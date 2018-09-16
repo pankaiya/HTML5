@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>音乐播放器</title>
+		<script>
+	function play(){
+		var playbutton = document.getElementById('playaudio');
+		var pausebutton = document.getElementById('pauseaudio');
+		var audio = document.getElementById('audios');
+		audio.play();
+		playbutton.disabled = true;	
+		pausebutton.disabled = false;
+		
+	}
+	function pause(){
+		var audio = document.getElementById('audios');
+		var playbutton = document.getElementById('playaudio');
+		var pausebutton = document.getElementById('pauseaudio');
+		pausebutton.disabled = true;
+		playbutton.disabled = false;
+		audio.pause();
+	}
+		function play1(){
+		var playbutton = document.getElementById('playaudio1');
+		var pausebutton = document.getElementById('pauseaudio1');
+		var audio= document.getElementById('audio1');
+		audio.play();
+		playbutton.disabled = true;	
+		pausebutton.disabled = false;
+		
+	}
+		function pause1(){
+		var audio = document.getElementById('audio1');
+		var playbutton = document.getElementById('playaudio1');
+		var pausebutton = document.getElementById('pauseaudio1');
+		pausebutton.disabled = true;
+		playbutton.disabled = false;
+		audio.pause();
+	}
+	</script>
+	</head>
+	<body>
+		<div>
+		<audio src="http://dl.stream.qqmusic.qq.com/C400000Xcjdn11qMov.m4a?guid=5226857048&vkey=FDE19A20445E376F82F5420426E1BE40DAC82A434FFB37DA1343B494BCB20B3DB357F445940CD012B2FBA164E4B14FDAC625010C9E149F97&uin=0&fromtag=66" id="audios"></audio>
+		love scenario&nbsp;<input type='button' value="播放" id="playaudio"  onclick = "play()" /><input type="button" value="暂停" id="pauseaudio" disabled="disabled"  onclick = "pause()" />
+		</div>
+		<div>
+		<audio src="http://dl.stream.qqmusic.qq.com/C400000Xcjdn11qMov.m4a?guid=5226857048&vkey=FDE19A20445E376F82F5420426E1BE40DAC82A434FFB37DA1343B494BCB20B3DB357F445940CD012B2FBA164E4B14FDAC625010C9E149F97&uin=0&fromtag=66" id="audios" controls="controls" loop="loop" autoplay="autoplay"></audio>
+		</div>
+		
+		
+		<div>
+		<audio  src="http://fs.w.kugou.com/201809162009/3f73bb55b62ff33190ab39f8fde6b198/G095/M04/1E/09/P5QEAFjjQQmALPUMADYtj-hjL-c494.mp3" id="audio1"></audio>
+		fool&nbsp;<input type='button' value="播放" id="playaudio1"  onclick = "play1()" /><input type="button" value="暂停" id="pauseaudio1" disabled="disabled"  onclick = "pause1()" />
+		</div>
+		<div>
+		<audio  src="http://fs.w.kugou.com/201809162009/3f73bb55b62ff33190ab39f8fde6b198/G095/M04/1E/09/P5QEAFjjQQmALPUMADYtj-hjL-c494.mp3" id="audio1" controls="controls"></audio>
+		</div>
+	</body>
+</html>
