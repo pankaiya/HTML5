@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>页面换肤</title>
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+		<style type="text/css">
+			fieldset{width:660px;}
+			.color{width:600px;height:48px;border:1px solid #96c2f1;margin:auto;}
+			.yan{width:26px;height:26px;float:left;margin-top:10px;margin-right:6px;}
+			/* 实现图片悬浮效果*/
+			.yan:hover{margin-top:6px;}
+			#first{background-color:#FFB6C1;margin-left:4px;}
+			#second{background-color:#00BFFF;}
+			#third{background-color:#FFDEAD}
+			#fourth{background-color:#D3D3D3}
+			#five{background-color:#ADFF2F}
+			#sixth{background-color:#00FF7F}
+			.content{background-color:Lightblue;width:560px;margin:auto;}
+		</style>
+		
+	</head>
+	<body>
+		<fieldset >
+			<legend style="color:red;font-size:20px;font-weight:bold">页面换肤</legend>
+			<div class="color"> 
+					<div class="yan" id="first"></div>
+					<div class="yan" id="second"></div>
+					<div class="yan" id="third"></div>
+					<div class="yan" id="fourth"></div>
+					<div class="yan" id="five"></div>
+					<div class="yan" id="sixth"></div>
+			</div>
+			<div class="content">
+				<p>LocalStorage将数据保存在客户端本地的硬件设备中，即使浏览器被关闭了，<br>
+				该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用</p>
+			</div>
+		</fieldset>
+		<script>
+			/*浏览器再次打开的时候，文本去颜色显示上次关闭时显示的颜色*/
+			var keep=localStorage.getItem("content1");
+			if(keep){
+			$(".content").css("background-color",keep);}else{};
+
+			$(".yan").mouseover(function(){
+				$(".content").css("background-color",$(this).css("background-color"));
+				localStorage.setItem("content1",$(this).css("background-color"));
+			});				
+</script>
+	</body>
+</html>
