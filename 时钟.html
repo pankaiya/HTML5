@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>时钟</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500"></canvas>
+		<script>
+			var c=document.getElementById("canvas");
+			var con=c.getContext("2d");
+			
+//			con.strokeStyle="green";
+//			con.lineWidth=3;
+//			con.arc(250,250,200,0,2*Math.PI);
+//			con.stroke();
+//			
+//			//保存原始坐标轴
+//			con.save();
+//			con.translate(250,250)
+//			con.fillStyle="red";
+//			con.fillRect(0,-190,3,25);
+//			
+//			//利用嵌套循环实现表示整点和零点的线条的交错效果
+//			for(var i=1;i<=12;i++){
+//				for(var j=0;j<=3;j++){
+//					con.rotate(6/180*Math.PI);
+//					con.fillStyle="black";
+//					con.fillRect(0,-190,3,15);
+//				}
+//				con.rotate(6/180*Math.PI);
+//				con.fillStyle="red";
+//				con.fillRect(0,-190,3,25);
+//				
+//				con.fillStyle = "black";
+//				var txt=i;
+//				con.fillText(txt,0,-150);
+//			}
+//			//恢复到原始坐标轴；
+//			con.restore();
+		
+function hanshu() {
+			
+			
+			var c=document.getElementById("canvas");
+			var con=c.getContext("2d");
+			
+con.clearRect(0,0,500,500);//在此处清空，因为该语句中也用到了con
+			con.beginPath();
+			con.strokeStyle="orange";
+			con.lineWidth=3;
+			con.arc(250,250,200,0,2*Math.PI);
+			con.stroke();
+			con.closePath();
+			
+			//保存原始坐标轴
+			con.save();
+			con.beginPath();
+			con.translate(250,250)
+			con.fillStyle="red";
+			con.fillRect(0,-190,3,25);
+			
+			//利用嵌套循环实现表示整点和零点的线条的交错效果
+			for(var i=1;i<=12;i++){
+				for(var j=0;j<=3;j++){
+					con.rotate(6/180*Math.PI);
+					con.fillStyle="black";
+					con.fillRect(0,-190,3,15);
+				}
+				con.rotate(6/180*Math.PI);
+				con.fillStyle="red";
+				con.fillRect(0,-190,3,25);
+				
+				con.fillStyle = "black";
+				var txt=i;
+				con.fillText(txt,0,-150);
+			}
+			//恢复到原始坐标轴；
+			con.closePath();
+			con.restore();
+			
+			
+    			//获取本地时间
+    			var dateTime = new Date();
+				//获取小时
+    			var hour = dateTime.getHours();
+    			//获取分
+    			var minute = dateTime.getMinutes();
+    			//获取秒
+    			var second = dateTime.getSeconds();
+    			hour = hour + minute / 60;
+   				hour = hour > 12 ? hour - 12 : hour;
+   
+   //绘制表的中心
+   	con.strokeStyle="black";
+   	con.fillStyle="black";
+	con.arc(250,250,4,0,2*Math.PI);
+	con.fill();
+	con.stroke();
+	
+    //绘制时针
+    //保存原始坐标轴
+    con.save();
+    con.beginPath();
+    //平移坐标轴到圆心位置
+    con.translate(250, 250);
+    //时针旋转角度
+    con.rotate(hour * 30 * Math.PI / 180 - Math.PI * 0.5);
+    //开始绘制
+//  con.beginPath();
+//  con.lineWidth = 7;
+//  con.strokeStyle ="purple";
+//  con.moveTo(0, 0);
+//  con.lineTo(100, 0)
+//  con.stroke();
+	con.fillStyle="purple";
+	con.fillRect(0,-4,100,4);
+    //结束绘制
+    //con.closePath();
+    //恢复到原始坐标轴
+    con.closePath();
+    con.restore();
+    	
+
+    //绘制分针
+    //保存原始坐标轴
+    con.save();
+    con.beginPath();
+    //平移坐标轴到圆心位置
+    con.translate(250, 250);
+    con.rotate(minute * 6 * Math.PI / 180 - Math.PI * 0.5);
+    //con.beginPath();
+//  con.lineWidth = 5;
+//  con.strokeStyle = "pink";
+//  con.moveTo(0, 0);
+//  con.lineTo(130, 0)
+//  con.stroke();
+	con.fillStyle="pink";		
+	con.fillRect(0,-3,120,3);
+    //con.closePath();
+    //恢复到原始坐标轴
+    con.closePath();
+    con.restore();
+
+    //绘制秒针
+    //保存原始坐标轴
+    con.save();
+    con.beginPath();
+    //平移坐标轴到圆心位置
+    con.translate(250, 250);
+    con.rotate(second * 6 * Math.PI / 180 - Math.PI * 0.5); 
+//  con.lineWidth = 3;
+//  con.strokeStyle = "red";
+//  con.moveTo(0, 0);
+//  con.lineTo(150, 0)
+//  con.stroke();
+	con.fillStyle="red";
+	con.fillRect(0,-0.5,150,0.5);
+	con.closePath();
+    //恢复到原始坐标轴
+ 	con.restore();
+ 	//con.clearRect();	
+ 	
+}
+hanshu();
+
+setInterval(hanshu, 1000);	
+			
+//			//实现钟表表示时间的功能
+//			//时针
+//			var time=new Date();//获取当前时间
+//			var second=time.getSeconds();//获取当前秒
+//			var minute=time.getMinutes()+(second/60);//获取当前分
+//			var hour=time.getHours()+(minute/60);//获取当前时
+//			hour=hour>12?hour-12:hour;
+//			content.save();
+//			content.translate(250,250);
+//			content.rotate(hour * 30 * Math.PI / 180 - Math.PI * 0.5);
+//			content.beginPath();
+//			content.lineWidth=6;
+//			content.Style="purple";
+//			content.moveTo(0,0);
+//			content.lineto(100,0);
+//			content.stroke();
+//			content.closePath();
+//			con.restore;
+//			
+//		//分针
+//		con.save();
+//  	//平移坐标轴到圆心位置
+//  	content.translate(250, 250);
+//  	
+//  	content.rotate(minute * 6 * Math.PI / 180 - Math.PI * 0.5);
+//  	content.beginPath();
+//  	content.lineWidth=6;
+//			content.Style="pink";
+//			content.moveTo(0,0);
+//			content.lineto(120,0);
+//			content.stroke();
+//			content.closePath();
+//  //恢复到原始坐标轴
+//  con.restore();
+//
+////			//分针
+////			content.fillStyle="pink";
+////			var minute=content.fillRect(0,0,4,115);
+////			//秒针
+////			content.fillStyle="red";
+////			var sec=content.fillRect(0,2,1,130);
+////			
+//
+//			setInterval(toTime,1000);
+//			function toTime(){
+//				var time=new Date();//获取当前时间
+//				var second=time.getSeconds();//获取当前秒
+//				var minute=time.getMinutes()+(second/60);//获取当前分
+//				var hour=time.getHours()+(minute/60);//获取当前时
+//				hour=hour>12?hour-12:hour;
+//				
+//							
+//				sec.rotate=iSec*(6/180*Math.PI);//秒表转动角度
+//				min.rotate=iMin*(6/180*Math.PI);//分针转动角度
+//				hour.rotate=iHour*(30/180*Math.PI);//时针转动角度
+//				
+//			}
+//			
+			
+		</script>
+	</body>
+</html>
+
+		
+
+		
